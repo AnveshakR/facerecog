@@ -19,7 +19,7 @@ Other algorithms use something called as a **blink-ratio** which is basically th
 >Single blink graph:
 ![](https://github.com/AnveshakR/facerecog/blob/master/images/single%20blink.jpg?raw=true)
 
-I have taken a slightly different approach, in that when the user blinks, the height of the detected eye decreases suddenly. But this change is sometimes imperceptible at certain ranges from the camera, or sometimes due to the user being at a distance from the camera such that the defined threshold fails. My approach consists of taking the **slopes** of all the adjacent points. This introduces a bit of linearity as shown by this graph.
+When the user blinks, the height of the detected eye decreases suddenly. But this change is sometimes imperceptible at certain ranges from the camera, or sometimes due to the user being at a distance from the camera such that the defined threshold fails. My approach consists of taking the **slopes** of all the adjacent points. This introduces a bit of linearity as shown by this graph.
 
 ![](https://github.com/AnveshakR/facerecog/blob/master/images/far_to_close_4_steps.png?raw=true)
 
