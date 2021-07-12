@@ -80,6 +80,7 @@ The folder layout looks something like this:
 - [ ] GUI
 - [ ] Auto/manual setup feature
 - [ ] Adding new faces via the program instead of manually
+- [ ] Debug program
 
 ### Thanks!
 Please feel free to open issues or ask me directly if you have a doubt!
