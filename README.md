@@ -75,7 +75,7 @@ The folder layout looks something like this:
 				liveliness_detector.py
 
 ### Future Checklist
-- [ ] Proper commenting lol
+- [x] Proper commenting lol
 - [ ] Adding accomodation for multiple faces
 - [ ] GUI
 - [ ] Auto/manual setup feature
