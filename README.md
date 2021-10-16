@@ -17,11 +17,11 @@ Unlike other liveliness detection algorithms that I have tried out, the algorith
 Other algorithms use something called as a **blink-ratio** which is basically the ratio between the height and the width of the eyes (average of both eyes).If this ratio dips below a specific value, it counts as a blink. This method does work, but it works only when the user is static and at a specific distance from the camera.
 
 >Single blink graph:
-![](https://github.com/AnveshakR/facerecog/blob/master/images/single%20blink.jpg?raw=true)
+![](https://github.com/AnveshakR/facerecog/blob/dlib-based/images/single%20blink.jpg?raw=true)
 
 When the user blinks, the height of the detected eye decreases suddenly. But this change is sometimes imperceptible at certain ranges from the camera, or sometimes due to the user being at a distance from the camera such that the defined threshold fails. My approach consists of taking the **slopes** of all the adjacent points. This introduces a bit of linearity as shown by this graph.
 
-![](https://github.com/AnveshakR/facerecog/blob/master/images/far_to_close_4_steps.png?raw=true)
+![](https://github.com/AnveshakR/facerecog/blob/dlib-based/images/far_to_close_4_steps.png?raw=true)
 
 For the above graph, I was moving towards the camera, stopping at 4 intervals and blinking 3 distinct times for each interval.
 The *orange* graph shows the raw graph between the eye widths captured in by the program. As we can see, defining a threshold for any one distance will cause the other ones to fail.
@@ -30,7 +30,7 @@ The *blue* graph plots the slopes between each adjacent pair of points. In this 
 To define distances from the camera, I have utilised the lengths of the eye of the user as a constant parameter. This is because, for a particular distance, the width of the eye is irrespective of the user blinking or not. I have divided the distance from the camera into 4 regions.
 
 >Slope vs Width
-![](https://github.com/AnveshakR/facerecog/blob/master/images/width_slope.png?raw=true)
+![](https://github.com/AnveshakR/facerecog/blob/dlib-based/images/width_slope.png?raw=true)
 
 As we can see, the widths are almost constant for each distance. From this graph, we can define 4 regions, each with a different threshold for the corresponding slope values. Instead of hardcoding these values in the code, I have included these values in the .env file. The values I have taken are:
 
