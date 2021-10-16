@@ -17,7 +17,8 @@ Unlike other liveliness detection algorithms that I have tried out, the algorith
 Other algorithms use something called as a **blink-ratio** which is basically the ratio between the height and the width of the eyes (average of both eyes).If this ratio dips below a specific value, it counts as a blink. This method does work, but it works only when the user is static and at a specific distance from the camera.
 
 >Single blink graph:
-![](https://github.com/AnveshakR/facerecog/blob/dlib-based/images/single%20blink.jpg?raw=true)
+>
+>![](https://github.com/AnveshakR/facerecog/blob/dlib-based/images/single%20blink.jpg?raw=true)
 
 When the user blinks, the height of the detected eye decreases suddenly. But this change is sometimes imperceptible at certain ranges from the camera, or sometimes due to the user being at a distance from the camera such that the defined threshold fails. My approach consists of taking the **slopes** of all the adjacent points. This introduces a bit of linearity as shown by this graph.
 
