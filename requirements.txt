@@ -4,4 +4,4 @@ face-recognition-models==0.3.0
 matplotlib==3.5.1
 numpy==1.21.6
 opencv-python==4.5.5.64
-tensorflow-gpu==2.8.0
+tensorflow-gpu==2.8.1
