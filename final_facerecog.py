@@ -1,18 +1,4 @@
-# facerecog - DLIB based facial recognition with liveliness detection.
-# Copyright (C) 2021 Anveshak Rathore
-
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-
-# Contact: anveshakrathore@yahoo.co.in
-
+from asyncio.windows_events import NULL
 import cv2
 import face_recognition
 import numpy as np
@@ -36,7 +22,7 @@ slope4 = float(os.getenv('slope4'))
 
 # defining time limit for the camera to be on. 7s is found to be the best time
 # to change just replace the 7 with the amount of seconds
-time_limit = time.time() + 7
+time_limit = 7
 
 known_faces = []
 names = []
@@ -56,10 +42,11 @@ eye_heights = []
 eye_widths = []
 
 # using 0 for integrated webcam, replace with RTSP/HTTP camera URL if being used
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 
+start_time = time.time()
 
-while time.time() <= time_limit:
+while time.time() - start_time <= time_limit:
     ret, frame = cap.read()
     temp_name = ""
     
@@ -89,6 +76,7 @@ while time.time() <= time_limit:
             landmarks = face_recognition.face_landmarks(frame, model='large')
 
             #drawing lines around the eyes of the detected face, can be commented out if not needed
+            # print([np.array(landmarks[0]['left_eye'])])
             cv2.polylines(frame, [np.array(landmarks[0]['left_eye'])], isClosed=True, color=(0,0,255), thickness=2)
             cv2.polylines(frame, [np.array(landmarks[0]['right_eye'])], isClosed=True, color=(0,0,255), thickness=2)
             left_eye = np.array(landmarks[0]["left_eye"])
@@ -148,9 +136,11 @@ if eye_heights != []:
     if avg_eye_width > width3 and min(slopes) <= slope4:
         is_real = True
 
-    if is_real:
+    if is_real and mode(face_name) != None:
         print(mode(face_name))
         print("Real Person")
+    elif mode(face_name) == None:
+        print("Person not recognised")
     else:
         print("Fake")
 
